@@ -41,7 +41,7 @@ const Profile = () => {
                 setSuccess(successMessage);
                 toast.success(successMessage);
                 setIsEditing(false);
-            }else if (response.data.code == 1001) {
+            } else if (response.data.code == 1001) {
                 const errorMessage = 'Số điện thoại đã tồn tại';
                 setError(errorMessage);
                 toast.error(errorMessage);
@@ -67,153 +67,184 @@ const Profile = () => {
     };
 
     return (
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div className="bg-white shadow rounded-lg">
-                <div className="px-4 py-5 sm:p-6">
-                    <div className="flex items-center justify-between mb-6">
-                        <h1 className="text-2xl font-bold text-gray-900">Thông tin cá nhân</h1>
+        <div className="min-h-screen bg-gradient-to-br from-purple-900 via-purple-800 to-purple-900 text-white">
+            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+                {/* Header */}
+                <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 shadow-2xl mb-8">
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-4">
+                            <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center">
+                                <span className="text-white font-black text-2xl">{user?.fullname?.charAt(0)?.toUpperCase()}</span>
+                            </div>
+                            <div>
+                                <h1 className="text-2xl md:text-3xl font-black">Thông tin cá nhân</h1>
+                                <p className="text-purple-200 text-sm">Quản lý hồ sơ và bảo mật tài khoản</p>
+                            </div>
+                        </div>
                         {!isEditing && (
                             <button
                                 onClick={() => setIsEditing(true)}
-                                className="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors"
+                                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-3 rounded-2xl text-sm font-bold transition-all shadow-2xl"
                             >
                                 Chỉnh sửa
                             </button>
                         )}
                     </div>
+                </div>
 
-                    {success && (
-                        <div className="mb-4 rounded-md bg-green-50 p-4">
-                            <div className="text-sm text-green-700">{success}</div>
-                        </div>
-                    )}
+                {/* Alerts */}
+                {success && (
+                    <div className="mb-6 bg-green-500/15 border border-green-400/30 text-green-200 rounded-2xl p-4">
+                        <div className="text-sm">{success}</div>
+                    </div>
+                )}
+                {error && (
+                    <div className="mb-6 bg-red-500/15 border border-red-400/30 text-red-200 rounded-2xl p-4">
+                        <div className="text-sm">{error}</div>
+                    </div>
+                )}
 
-                    {error && (
-                        <div className="mb-4 rounded-md bg-red-50 p-4">
-                            <div className="text-sm text-red-700">{error}</div>
-                        </div>
-                    )}
-
-                    {isEditing ? (
-                        <form onSubmit={handleSubmit} className="space-y-6">
-                            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                                <div>
-                                    <label htmlFor="fullname" className="block text-sm font-medium text-gray-700">
-                                        Họ và tên
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="fullname"
-                                        id="fullname"
-                                        value={formData.fullname}
-                                        onChange={handleChange}
-                                        className="mt-1 block w-full px-4 py-3 text-lg border border-gray-300 rounded-xl shadow-sm focus:ring-primary-500 focus:border-primary-500 focus:outline-none transition-colors duration-200 bg-gray-50 focus:bg-white"
-                                        required
-                                    />
+                <div className="grid lg:grid-cols-3 gap-8">
+                    {/* Left - Summary card */}
+                    <div className="lg:col-span-1">
+                        <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8">
+                            <div className="flex items-center gap-4 mb-6">
+                                <div className="w-14 h-14 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center">
+                                    <span className="text-white font-black text-xl">{user?.fullname?.charAt(0)?.toUpperCase()}</span>
                                 </div>
-
                                 <div>
-                                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                                        Email
-                                    </label>
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        id="email"
-                                        disabled
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        className="mt-1 block w-full px-4 py-3 text-lg border border-gray-300 rounded-xl shadow-sm focus:ring-primary-500 focus:border-primary-500 focus:outline-none transition-colors duration-200 bg-gray-50 focus:bg-white"
-                                        required
-                                    />
-                                </div>
-
-                                <div>
-                                    <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700">
-                                        Số điện thoại
-                                    </label>
-                                    <input
-                                        type="tel"
-                                        name="phoneNumber"
-                                        id="phoneNumber"
-                                        value={formData.phoneNumber}
-                                        onChange={handleChange}
-                                        className="mt-1 block w-full px-4 py-3 text-lg border border-gray-300 rounded-xl shadow-sm focus:ring-primary-500 focus:border-primary-500 focus:outline-none transition-colors duration-200 bg-gray-50 focus:bg-white"
-                                        required
-                                    />
+                                    <div className="text-xl font-bold">{user?.fullname}</div>
+                                    <div className="text-purple-300 text-sm">{user?.email}</div>
                                 </div>
                             </div>
 
-                            <div className="flex justify-end space-x-3">
-                                <button
-                                    type="button"
-                                    onClick={handleCancel}
-                                    className="bg-white py-3 px-6 border border-gray-300 rounded-xl shadow-sm text-lg font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors duration-200"
-                                >
-                                    Hủy
-                                </button>
-                                <button
-                                    type="submit"
-                                    disabled={isLoading}
-                                    className="bg-primary-600 hover:bg-primary-700 text-white py-3 px-6 rounded-xl text-lg font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
-                                >
-                                    {isLoading ? <LoadingSpinner size="sm" /> : 'Lưu thay đổi'}
-                                </button>
-                            </div>
-                        </form>
-                    ) : (
-                        <div className="space-y-6">
-                            <div className="flex items-center space-x-4">
-                                <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center">
-                                    <span className="text-primary-600 font-bold text-2xl">
-                                        {user?.fullname?.charAt(0)?.toUpperCase()}
-                                    </span>
-                                </div>
-                                <div>
-                                    <h2 className="text-xl font-semibold text-gray-900">{user?.fullname}</h2>
-                                    <p className="text-sm text-gray-500">{user?.email}</p>
-                                </div>
-                            </div>
-
-                            <dl className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2">
-                                <div>
-                                    <dt className="text-sm font-medium text-gray-500">Họ và tên</dt>
-                                    <dd className="mt-1 text-sm text-gray-900">{user?.fullname}</dd>
-                                </div>
-
-                                <div>
-                                    <dt className="text-sm font-medium text-gray-500">Email</dt>
-                                    <dd className="mt-1 text-sm text-gray-900">{user?.email}</dd>
-                                </div>
-
-                                <div>
-                                    <dt className="text-sm font-medium text-gray-500">Số điện thoại</dt>
-                                    <dd className="mt-1 text-sm text-gray-900">{user?.phoneNumber || 'Chưa cập nhật'}</dd>
-                                </div>
-
-                                <div>
-                                    <dt className="text-sm font-medium text-gray-500">Vai trò</dt>
-                                    <dd className="mt-1 text-sm text-gray-900">
-                                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800">
+                            <div className="space-y-4">
+                                <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
+                                    <div className="text-purple-300 text-sm">Vai trò</div>
+                                    <div className="mt-1">
+                                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-purple-500/30 to-pink-500/30 text-white border border-white/20">
                                             {useAuthStore.getState().getRoleName()}
                                         </span>
-                                    </dd>
+                                    </div>
                                 </div>
-                            </dl>
-
-                            <div className="border-t pt-6">
-                                <h3 className="text-lg font-medium text-gray-900 mb-4">Tài khoản</h3>
-                                <div className="space-y-3">
-                                    <Link
-                                        to="/change-password"
-                                        className="inline-flex items-center px-6 py-3 border border-gray-300 shadow-sm text-lg font-medium rounded-xl text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors duration-200"
-                                    >
-                                        Đổi mật khẩu
-                                    </Link>
+                                <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
+                                    <div className="text-purple-300 text-sm">Số điện thoại</div>
+                                    <div className="mt-1 text-white">{user?.phoneNumber || 'Chưa cập nhật'}</div>
                                 </div>
                             </div>
                         </div>
-                    )}
+                    </div>
+
+                    {/* Right - Form or Details */}
+                    <div className="lg:col-span-2">
+                        <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8">
+                            {isEditing ? (
+                                <form onSubmit={handleSubmit} className="space-y-6">
+                                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                                        <div>
+                                            <label htmlFor="fullname" className="block text-sm font-bold text-white mb-2">
+                                                Họ và tên
+                                            </label>
+                                            <input
+                                                type="text"
+                                                name="fullname"
+                                                id="fullname"
+                                                value={formData.fullname}
+                                                onChange={handleChange}
+                                                className="block w-full px-4 py-3 text-lg border-2 border-white/30 rounded-2xl bg-white/5 text-white placeholder-gray-300 focus:ring-4 focus:ring-purple-500/20 focus:border-purple-500"
+                                                required
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <label htmlFor="email" className="block text-sm font-bold text-white mb-2">
+                                                Email
+                                            </label>
+                                            <input
+                                                type="email"
+                                                name="email"
+                                                id="email"
+                                                disabled
+                                                value={formData.email}
+                                                onChange={handleChange}
+                                                className="block w-full px-4 py-3 text-lg border-2 border-white/30 rounded-2xl bg-white/5 text-white placeholder-gray-300 focus:ring-4 focus:ring-purple-500/20 focus:border-purple-500 disabled:opacity-60"
+                                                required
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <label htmlFor="phoneNumber" className="block text-sm font-bold text-white mb-2">
+                                                Số điện thoại
+                                            </label>
+                                            <input
+                                                type="tel"
+                                                name="phoneNumber"
+                                                id="phoneNumber"
+                                                value={formData.phoneNumber}
+                                                onChange={handleChange}
+                                                className="block w-full px-4 py-3 text-lg border-2 border-white/30 rounded-2xl bg-white/5 text-white placeholder-gray-300 focus:ring-4 focus:ring-purple-500/20 focus:border-purple-500"
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="flex justify-end gap-3">
+                                        <button
+                                            type="button"
+                                            onClick={handleCancel}
+                                            className="px-6 py-3 rounded-2xl border-2 border-white/30 text-white bg-white/10 hover:bg-white/20 transition-all"
+                                        >
+                                            Hủy
+                                        </button>
+                                        <button
+                                            type="submit"
+                                            disabled={isLoading}
+                                            className="px-6 py-3 rounded-2xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold transition-all shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed"
+                                        >
+                                            {isLoading ? <LoadingSpinner size="sm" /> : 'Lưu thay đổi'}
+                                        </button>
+                                    </div>
+                                </form>
+                            ) : (
+                                <div className="space-y-8">
+                                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                                        <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+                                            <div className="text-purple-300 text-sm">Họ và tên</div>
+                                            <div className="mt-1 text-lg font-bold text-white">{user?.fullname}</div>
+                                        </div>
+                                        <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+                                            <div className="text-purple-300 text-sm">Email</div>
+                                            <div className="mt-1 text-lg font-bold text-white">{user?.email}</div>
+                                        </div>
+                                        <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+                                            <div className="text-purple-300 text-sm">Số điện thoại</div>
+                                            <div className="mt-1 text-lg font-bold text-white">{user?.phoneNumber || 'Chưa cập nhật'}</div>
+                                        </div>
+                                        <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+                                            <div className="text-purple-300 text-sm">Vai trò</div>
+                                            <div className="mt-1">
+                                                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-purple-500/30 to-pink-500/30 text-white border border-white/20">
+                                                    {useAuthStore.getState().getRoleName()}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="border-t border-white/20 pt-6">
+                                        <h3 className="text-lg font-bold text-white mb-4">Tài khoản</h3>
+                                        <div className="space-y-3">
+                                            <Link
+                                                to="/change-password"
+                                                className="inline-flex items-center px-6 py-3 rounded-2xl border-2 border-white/30 text-white bg-white/10 hover:bg-white/20 transition-all"
+                                            >
+                                                Đổi mật khẩu
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
