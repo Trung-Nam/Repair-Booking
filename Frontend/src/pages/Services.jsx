@@ -8,7 +8,7 @@ const ServiceCard = ({ service }) => {
     const { user, isLoggedIn } = useAuthStore();
 
     return (
-        <div className="group bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 overflow-hidden transform hover:-translate-y-4 border border-white/20">
+        <div className="group bg-white/10 backdrop-blur-xl rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 overflow-hidden transform hover:-translate-y-4 border border-white/20 hover:border-white/40">
             <div className="relative overflow-hidden">
                 <img
                     src={service.imageUrl || service.image || 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop'}
@@ -16,25 +16,30 @@ const ServiceCard = ({ service }) => {
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
                     loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                 <div className="absolute top-4 left-4">
-                    <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-xl">
+                    <span className="inline-flex items-center px-4 py-2 rounded-full text-xs font-bold bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg">
                         {service.category}
                     </span>
                 </div>
                 <div className="absolute top-4 right-4">
-                    <div className="flex items-center bg-white/90 backdrop-blur-xl rounded-full px-3 py-2 shadow-xl">
+                    <div className="flex items-center bg-white/90 backdrop-blur-xl rounded-full px-3 py-2 shadow-lg">
                         {service.averageRating && service.averageRating > 0 ? (
                             <>
-                                <svg className="w-5 h-5 text-yellow-400 fill-current mr-2" viewBox="0 0 20 20">
+                                <svg className="w-4 h-4 text-yellow-400 fill-current mr-1" viewBox="0 0 20 20">
                                     <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                                 </svg>
                                 <span className="text-sm font-bold text-gray-800">
                                     {service.averageRating.toFixed(1)}
                                 </span>
+                                {service.totalRatings > 0 && (
+                                    <span className="text-xs text-gray-600 ml-1">
+                                        ({service.totalRatings})
+                                    </span>
+                                )}
                             </>
                         ) : (
-                            <span className="text-xs font-bold text-gray-500 px-2">
+                            <span className="text-xs font-bold text-gray-600 px-1">
                                 Chưa có đánh giá
                             </span>
                         )}
@@ -44,15 +49,15 @@ const ServiceCard = ({ service }) => {
 
             <div className="p-8">
                 <Link to={`/services/${service.id}`} className="block">
-                    <h3 className="text-2xl font-black text-gray-900 mb-4 group-hover:text-blue-600 transition-colors">
+                    <h3 className="text-2xl font-black text-white mb-4 group-hover:text-purple-300 transition-colors duration-300">
                         {service.name}
                     </h3>
                 </Link>
-                <p className="text-gray-600 mb-6 line-clamp-2 leading-relaxed text-lg">{service.description}</p>
+                <p className="text-gray-300 mb-6 line-clamp-2 leading-relaxed text-lg">{service.description}</p>
 
                 <div className="flex items-center justify-between mb-8">
                     <div className="text-right">
-                        <div className="text-3xl font-black bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        <div className="text-3xl font-black text-transparent bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text">
                             {service.price ? service.price.toLocaleString('vi-VN') + 'đ' : 'Liên hệ'}
                         </div>
                     </div>
@@ -62,12 +67,12 @@ const ServiceCard = ({ service }) => {
                 {!isLoggedIn || user?.role === 0 ? (
                     <Link
                         to={!isLoggedIn ? "/login" : `/booking/${service.id}`}
-                        className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-black py-4 px-6 rounded-2xl text-center block transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-3xl text-lg"
+                        className="w-full bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 hover:from-purple-700 hover:via-pink-700 hover:to-blue-700 text-white font-bold py-4 px-6 rounded-2xl text-center block transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl"
                     >
                         Đặt dịch vụ ngay
                     </Link>
                 ) : (
-                    <div className="w-full bg-gray-100 text-gray-500 font-bold py-4 px-6 rounded-2xl text-center text-lg">
+                    <div className="w-full bg-gray-100/20 text-gray-400 font-bold py-4 px-6 rounded-2xl text-center backdrop-blur-sm">
                         Chỉ khách hàng mới có thể đặt dịch vụ
                     </div>
                 )}
@@ -276,59 +281,59 @@ const Services = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+        <div className="min-h-screen bg-gradient-to-br from-purple-900 via-purple-800 to-purple-900">
+            {/* Background Pattern */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(168,85,247,0.1),transparent_50%)]"></div>
+
             {/* Hero Section */}
-            <div className="relative bg-gradient-to-br from-blue-600 via-purple-700 to-indigo-800 overflow-hidden">
-                {/* Animated Background Elements */}
-                <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20" style={{
-                    backgroundImage: "url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&h=900&fit=crop')"
-                }}></div>
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/80 via-purple-700/80 to-indigo-800/80"></div>
+            <div className="relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-900/90 via-purple-800/90 to-purple-900/90"></div>
 
                 {/* Floating Elements */}
-                <div className="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full blur-xl animate-pulse"></div>
-                <div className="absolute top-40 right-20 w-32 h-32 bg-yellow-300/20 rounded-full blur-2xl animate-bounce"></div>
-                <div className="absolute bottom-20 left-1/4 w-16 h-16 bg-green-300/20 rounded-full blur-lg animate-pulse"></div>
+                <div className="absolute top-20 left-10 w-20 h-20 bg-purple-500/20 rounded-full blur-xl animate-pulse"></div>
+                <div className="absolute top-40 right-20 w-32 h-32 bg-pink-500/20 rounded-full blur-2xl animate-bounce"></div>
+                <div className="absolute bottom-20 left-1/4 w-16 h-16 bg-blue-500/20 rounded-full blur-lg animate-pulse"></div>
 
                 <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 text-center">
                     <div className="mb-8">
-                        <span className="inline-flex items-center px-6 py-3 rounded-full text-sm font-semibold bg-white/20 backdrop-blur-xl text-white border border-white/30 shadow-lg">
-                            🛠️ Dịch vụ sửa chữa chuyên nghiệp
-                        </span>
+                        <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/30 backdrop-blur-sm">
+                            <span className="text-blue-300 text-sm font-medium">🛠️ Dịch vụ chuyên nghiệp</span>
+                        </div>
                     </div>
-                    <h1 className="text-6xl md:text-8xl font-black text-white mb-8 leading-tight">
-                        Dịch vụ của
-                        <span className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-orange-300 to-red-300 animate-pulse">
-                            chúng tôi
+                    <h1 className="text-5xl md:text-6xl font-black text-white mb-6">
+                        <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                            Dịch vụ của chúng tôi
                         </span>
                     </h1>
-                    <p className="text-2xl md:text-3xl text-white/90 mb-12 max-w-4xl mx-auto leading-relaxed font-light">
-                        Cung cấp đầy đủ các dịch vụ sửa chữa nhà cửa với chất lượng tốt nhất và giá cả hợp lý
+                    <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                        Tất cả các dịch vụ sửa chữa nhà cửa bạn cần với đội ngũ thợ lành nghề và công nghệ hiện đại
                     </p>
                 </div>
             </div>
 
             {/* Service Features */}
-            <div className="py-24">
+            <div className="py-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
                         <div className="mb-6">
-                            <span className="inline-flex items-center px-6 py-3 rounded-full text-sm font-semibold bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg">
-                                ✨ Ưu điểm vượt trội
-                            </span>
+                            <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 backdrop-blur-sm">
+                                <span className="text-purple-300 text-sm font-medium">✨ Ưu điểm vượt trội</span>
+                            </div>
                         </div>
-                        <h2 className="text-5xl md:text-6xl font-black text-gray-900 mb-6">Tại sao chọn dịch vụ của chúng tôi?</h2>
-                        <p className="text-2xl text-gray-600 font-light">Những ưu điểm vượt trội của Repair booking</p>
+                        <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
+                            Tại sao chọn dịch vụ của chúng tôi?
+                        </h2>
+                        <p className="text-xl text-gray-300 font-light">Những ưu điểm vượt trội của Repair booking</p>
                     </div>
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {serviceFeatures.map((feature, index) => (
-                            <div key={index} className="text-center group">
-                                <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-10 shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-4 border border-white/20">
-                                    <div className="w-20 h-20 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 rounded-3xl flex items-center justify-center mx-auto mb-6 text-white group-hover:scale-110 transition-transform duration-300 shadow-xl">
+                            <div key={index} className="text-center group h-full">
+                                <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-4 border border-white/20 hover:border-white/40 h-full flex flex-col">
+                                    <div className="w-16 h-16 bg-gradient-to-br from-purple-500 via-pink-500 to-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-6 text-white group-hover:scale-110 transition-transform duration-300 shadow-xl">
                                         {feature.icon}
                                     </div>
-                                    <h3 className="text-2xl font-black text-gray-900 mb-4">{feature.title}</h3>
-                                    <p className="text-gray-600 text-lg leading-relaxed">{feature.description}</p>
+                                    <h3 className="text-xl font-black text-white mb-4">{feature.title}</h3>
+                                    <p className="text-gray-300 text-lg leading-relaxed flex-grow">{feature.description}</p>
                                 </div>
                             </div>
                         ))}
@@ -340,12 +345,12 @@ const Services = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 <div className="text-center mb-16">
                     <div className="mb-6">
-                        <span className="inline-flex items-center px-6 py-3 rounded-full text-sm font-semibold bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg">
-                            🔍 Tìm kiếm thông minh
-                        </span>
+                        <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/30 backdrop-blur-sm">
+                            <span className="text-blue-300 text-sm font-medium">🔍 Tìm kiếm thông minh</span>
+                        </div>
                     </div>
-                    <h2 className="text-5xl md:text-6xl font-black text-white mb-6">Tìm kiếm dịch vụ</h2>
-                    <p className="text-2xl text-gray-300 font-light">Tìm kiếm và lọc dịch vụ theo nhu cầu của bạn</p>
+                    <h2 className="text-4xl md:text-5xl font-black text-white mb-6">Tìm kiếm dịch vụ</h2>
+                    <p className="text-xl text-gray-300 font-light">Tìm kiếm và lọc dịch vụ theo nhu cầu của bạn</p>
                 </div>
 
                 {/* Search and Filter Form */}
@@ -447,6 +452,29 @@ const Services = () => {
                 <div className="text-center mb-12">
                     <h3 className="text-2xl font-bold text-white mb-4">Danh mục dịch vụ</h3>
                     <p className="text-lg text-gray-300">Chọn danh mục để xem các dịch vụ tương ứng</p>
+                    <div className="flex flex-wrap justify-center gap-4 mt-6">
+                        <button
+                            onClick={() => setSelectedCategory('all')}
+                            className={`px-6 py-3 rounded-2xl font-bold transition-all duration-300 ${selectedCategory === 'all'
+                                ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg'
+                                : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                                }`}
+                        >
+                            Tất cả
+                        </button>
+                        {categories.map((category) => (
+                            <button
+                                key={category}
+                                onClick={() => setSelectedCategory(category)}
+                                className={`px-6 py-3 rounded-2xl font-bold transition-all duration-300 ${selectedCategory === category
+                                    ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg'
+                                    : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                                    }`}
+                            >
+                                {category}
+                            </button>
+                        ))}
+                    </div>
                 </div>
 
 
@@ -454,18 +482,18 @@ const Services = () => {
                 {/* Services Grid */}
                 {isLoading ? (
                     <div className="flex justify-center py-24">
-                        <div className="text-center bg-white/80 backdrop-blur-xl rounded-3xl p-12 shadow-2xl border border-white/20">
+                        <div className="text-center bg-white/10 backdrop-blur-xl rounded-3xl p-12 shadow-2xl border border-white/20">
                             <LoadingSpinner size="lg" />
-                            <p className="mt-6 text-gray-600 text-xl font-medium">Đang tải dịch vụ...</p>
+                            <p className="mt-6 text-gray-300 text-xl font-medium">Đang tải dịch vụ...</p>
                         </div>
                     </div>
                 ) : error ? (
                     <div className="text-center py-24">
-                        <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-12 max-w-lg mx-auto shadow-2xl border border-white/20">
+                        <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-12 max-w-lg mx-auto shadow-2xl border border-white/20">
                             <svg className="w-20 h-20 text-red-400 mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
                             </svg>
-                            <div className="text-red-600 mb-8 font-bold text-xl">{error}</div>
+                            <div className="text-red-300 mb-8 font-bold text-xl">{error}</div>
                             <button
                                 onClick={fetchServices}
                                 className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-8 py-4 rounded-2xl font-black text-lg transition-all duration-300 transform hover:scale-110 shadow-2xl hover:shadow-3xl"
@@ -476,15 +504,15 @@ const Services = () => {
                     </div>
                 ) : filteredServices.length === 0 ? (
                     <div className="text-center py-24">
-                        <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-12 max-w-lg mx-auto shadow-2xl border border-white/20">
+                        <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-12 max-w-lg mx-auto shadow-2xl border border-white/20">
                             <svg className="w-20 h-20 text-gray-400 mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.29-1.009-5.824-2.579C6.176 11.991 6 11.5 6 11c0-2.761 2.239-5 5-5s5 2.239 5 5c0 .5-.176.991-.176 1.421z" />
                             </svg>
-                            <div className="text-gray-600 text-2xl mb-6 font-bold">Không tìm thấy dịch vụ nào</div>
-                            <p className="text-gray-500 text-lg mb-8">Thử thay đổi từ khóa tìm kiếm hoặc bộ lọc</p>
+                            <div className="text-gray-300 text-2xl mb-6 font-bold">Không tìm thấy dịch vụ nào</div>
+                            <p className="text-gray-400 text-lg mb-8">Thử thay đổi từ khóa tìm kiếm hoặc bộ lọc</p>
                             <button
                                 onClick={handleClearFilters}
-                                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-2xl font-black text-lg transition-all duration-300 transform hover:scale-110 shadow-2xl hover:shadow-3xl"
+                                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 rounded-2xl font-black text-lg transition-all duration-300 transform hover:scale-110 shadow-2xl hover:shadow-3xl"
                             >
                                 Xóa bộ lọc
                             </button>
@@ -501,13 +529,13 @@ const Services = () => {
                         {/* Pagination */}
                         {paginationInfo.totalPages > 1 && (
                             <div className="mt-16 flex justify-center">
-                                <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-4 shadow-2xl border border-white/20">
+                                <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-4 shadow-2xl border border-white/20">
                                     <div className="flex items-center gap-3">
                                         {/* Previous Button */}
                                         <button
                                             onClick={() => handlePageChange(paginationInfo.currentPage - 1)}
                                             disabled={paginationInfo.currentPage === 1}
-                                            className="px-6 py-3 rounded-xl bg-white/80 backdrop-blur-xl border border-gray-200 text-gray-600 hover:bg-white hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105"
+                                            className="px-6 py-3 rounded-xl bg-white/10 backdrop-blur-xl border border-white/30 text-gray-300 hover:bg-white/20 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105"
                                         >
                                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -520,8 +548,8 @@ const Services = () => {
                                                 key={page}
                                                 onClick={() => handlePageChange(page)}
                                                 className={`px-6 py-3 rounded-xl font-bold text-lg transition-all duration-300 transform hover:scale-110 ${page === paginationInfo.currentPage
-                                                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-2xl'
-                                                    : 'bg-white/80 backdrop-blur-xl border border-gray-200 text-gray-600 hover:bg-white hover:shadow-lg'
+                                                    ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-2xl'
+                                                    : 'bg-white/10 backdrop-blur-xl border border-white/30 text-gray-300 hover:bg-white/20 hover:shadow-lg'
                                                     }`}
                                             >
                                                 {page}
@@ -532,7 +560,7 @@ const Services = () => {
                                         <button
                                             onClick={() => handlePageChange(paginationInfo.currentPage + 1)}
                                             disabled={paginationInfo.currentPage === paginationInfo.totalPages}
-                                            className="px-6 py-3 rounded-xl bg-white/80 backdrop-blur-xl border border-gray-200 text-gray-600 hover:bg-white hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105"
+                                            className="px-6 py-3 rounded-xl bg-white/10 backdrop-blur-xl border border-white/30 text-gray-300 hover:bg-white/20 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105"
                                         >
                                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -547,33 +575,33 @@ const Services = () => {
             </div>
 
             {/* Process Steps */}
-            <div className="py-24">
+            <div className="py-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center mb-20">
+                    <div className="text-center mb-16">
                         <div className="mb-6">
-                            <span className="inline-flex items-center px-6 py-3 rounded-full text-sm font-semibold bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg">
-                                🔄 Quy trình chuyên nghiệp
-                            </span>
+                            <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 backdrop-blur-sm">
+                                <span className="text-purple-300 text-sm font-medium">🔄 Quy trình chuyên nghiệp</span>
+                            </div>
                         </div>
-                        <h2 className="text-5xl md:text-6xl font-black text-gray-900 mb-6">Quy trình làm việc</h2>
-                        <p className="text-2xl text-gray-600 font-light">4 bước đơn giản để có dịch vụ hoàn hảo</p>
+                        <h2 className="text-4xl md:text-5xl font-black text-white mb-6">Quy trình làm việc</h2>
+                        <p className="text-xl text-gray-300 font-light">4 bước đơn giản để có dịch vụ hoàn hảo</p>
                     </div>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {processSteps.map((step, index) => (
                             <div key={index} className="relative text-center group">
-                                <div className="relative z-10 bg-white/80 backdrop-blur-xl rounded-3xl p-10 shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 border border-white/20">
-                                    <div className="w-20 h-20 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-3xl font-black shadow-xl group-hover:scale-110 transition-transform duration-500">
+                                <div className="relative z-10 bg-white/10 backdrop-blur-xl rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 border border-white/20 hover:border-white/40">
+                                    <div className="w-16 h-16 bg-gradient-to-br from-purple-500 via-pink-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl font-black shadow-xl group-hover:scale-110 transition-transform duration-500">
                                         {step.step}
                                     </div>
-                                    <div className="text-6xl mb-6">{step.icon}</div>
-                                    <h3 className="text-2xl font-black text-gray-900 mb-4">{step.title}</h3>
-                                    <p className="text-gray-600 text-lg leading-relaxed">{step.description}</p>
+                                    <div className="text-4xl mb-4">{step.icon}</div>
+                                    <h3 className="text-xl font-black text-white mb-4">{step.title}</h3>
+                                    <p className="text-gray-300 text-lg leading-relaxed">{step.description}</p>
                                 </div>
 
                                 {/* Connecting Line */}
                                 {index < processSteps.length - 1 && (
-                                    <div className="hidden lg:block absolute top-1/2 left-full w-full h-1 bg-gradient-to-r from-blue-300 via-purple-300 to-transparent transform -translate-y-1/2 z-0 rounded-full"></div>
+                                    <div className="hidden lg:block absolute top-1/2 left-full w-full h-1 bg-gradient-to-r from-purple-300 via-pink-300 to-transparent transform -translate-y-1/2 z-0 rounded-full"></div>
                                 )}
                             </div>
                         ))}
@@ -582,18 +610,18 @@ const Services = () => {
             </div>
 
             {/* CTA Section */}
-            <div className="bg-gradient-to-r from-blue-600 via-purple-700 to-indigo-800 py-24">
+            <div className="bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 py-20">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-5xl md:text-7xl font-black text-white mb-8">
+                    <h2 className="text-4xl md:text-6xl font-black text-white mb-8">
                         Sẵn sàng bắt đầu dự án của bạn?
                     </h2>
-                    <p className="text-2xl text-white/90 mb-12 max-w-3xl mx-auto font-light">
+                    <p className="text-xl text-white/90 mb-12 max-w-3xl mx-auto font-light">
                         Liên hệ ngay để được tư vấn miễn phí và báo giá chi tiết
                     </p>
                     <div className="flex flex-col sm:flex-row gap-6 justify-center">
                         <Link
                             to="/contact"
-                            className="inline-flex items-center px-10 py-5 bg-white text-blue-700 rounded-2xl font-black text-xl hover:bg-gray-50 transition-all duration-300 transform hover:scale-110 shadow-2xl hover:shadow-3xl"
+                            className="inline-flex items-center px-10 py-5 bg-white text-purple-700 rounded-2xl font-black text-xl hover:bg-gray-50 transition-all duration-300 transform hover:scale-110 shadow-2xl hover:shadow-3xl"
                         >
                             <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -602,7 +630,7 @@ const Services = () => {
                         </Link>
                         <Link
                             to="/"
-                            className="inline-flex items-center px-10 py-5 border-2 border-white/50 text-white rounded-2xl font-black text-xl hover:bg-white hover:text-blue-700 transition-all duration-300 transform hover:scale-110 backdrop-blur-xl"
+                            className="inline-flex items-center px-10 py-5 border-2 border-white/50 text-white rounded-2xl font-black text-xl hover:bg-white hover:text-purple-700 transition-all duration-300 transform hover:scale-110 backdrop-blur-xl"
                         >
                             <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />

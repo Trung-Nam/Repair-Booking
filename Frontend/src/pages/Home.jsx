@@ -365,43 +365,45 @@ const ServicesSection = () => {
 
                     {/* Pagination */}
                     {paginationInfo.totalPages > 1 && (
-                        <div className="mt-12 flex justify-center">
-                            <div className="flex items-center gap-2 bg-white rounded-lg p-2 shadow-sm border border-gray-200">
-                                {/* Previous Button */}
-                                <button
-                                    onClick={() => handlePageChange(paginationInfo.currentPage - 1)}
-                                    disabled={paginationInfo.currentPage === 1}
-                                    className="px-3 py-2 rounded-md bg-gray-100 text-gray-600 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                                >
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                    </svg>
-                                </button>
-
-                                {/* Page Numbers */}
-                                {Array.from({ length: paginationInfo.totalPages }, (_, i) => i + 1).map(page => (
+                        <div className="mt-16 flex justify-center">
+                            <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-4 shadow-2xl border border-white/20">
+                                <div className="flex items-center gap-3">
+                                    {/* Previous Button */}
                                     <button
-                                        key={page}
-                                        onClick={() => handlePageChange(page)}
-                                        className={`px-3 py-2 rounded-md font-medium transition-colors ${page === paginationInfo.currentPage
-                                            ? 'bg-blue-600 text-white'
-                                            : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                                            }`}
+                                        onClick={() => handlePageChange(paginationInfo.currentPage - 1)}
+                                        disabled={paginationInfo.currentPage === 1}
+                                        className="px-6 py-3 rounded-xl bg-white/10 backdrop-blur-xl border border-white/30 text-gray-300 hover:bg-white/20 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105"
                                     >
-                                        {page}
+                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                        </svg>
                                     </button>
-                                ))}
 
-                                {/* Next Button */}
-                                <button
-                                    onClick={() => handlePageChange(paginationInfo.currentPage + 1)}
-                                    disabled={paginationInfo.currentPage === paginationInfo.totalPages}
-                                    className="px-3 py-2 rounded-md bg-gray-100 text-gray-600 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                                >
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </button>
+                                    {/* Page Numbers */}
+                                    {Array.from({ length: paginationInfo.totalPages }, (_, i) => i + 1).map(page => (
+                                        <button
+                                            key={page}
+                                            onClick={() => handlePageChange(page)}
+                                            className={`px-6 py-3 rounded-xl font-bold text-lg transition-all duration-300 transform hover:scale-110 ${page === paginationInfo.currentPage
+                                                ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-2xl'
+                                                : 'bg-white/10 backdrop-blur-xl border border-white/30 text-gray-300 hover:bg-white/20 hover:shadow-lg'
+                                                }`}
+                                        >
+                                            {page}
+                                        </button>
+                                    ))}
+
+                                    {/* Next Button */}
+                                    <button
+                                        onClick={() => handlePageChange(paginationInfo.currentPage + 1)}
+                                        disabled={paginationInfo.currentPage === paginationInfo.totalPages}
+                                        className="px-6 py-3 rounded-xl bg-white/10 backdrop-blur-xl border border-white/30 text-gray-300 hover:bg-white/20 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105"
+                                    >
+                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     )}
@@ -721,49 +723,49 @@ const Home = () => {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        <div className="group">
-                            <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:-translate-y-2 text-center">
+                        <div className="group h-full">
+                            <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:-translate-y-2 text-center h-full flex flex-col">
                                 <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                                     <span className="text-white text-3xl font-bold">1</span>
                                 </div>
                                 <h3 className="text-2xl font-bold text-white mb-4">Tư vấn & Khảo sát</h3>
-                                <p className="text-purple-200 leading-relaxed">
+                                <p className="text-purple-200 leading-relaxed flex-grow">
                                     Tư vấn miễn phí và khảo sát hiện trạng để đưa ra giải pháp tối ưu nhất
                                 </p>
                             </div>
                         </div>
 
-                        <div className="group">
-                            <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:-translate-y-2 text-center">
+                        <div className="group h-full">
+                            <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:-translate-y-2 text-center h-full flex flex-col">
                                 <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                                     <span className="text-white text-3xl font-bold">2</span>
                                 </div>
                                 <h3 className="text-2xl font-bold text-white mb-4">Báo giá & Ký hợp đồng</h3>
-                                <p className="text-purple-200 leading-relaxed">
+                                <p className="text-purple-200 leading-relaxed flex-grow">
                                     Báo giá chi tiết, minh bạch và ký kết hợp đồng rõ ràng
                                 </p>
                             </div>
                         </div>
 
-                        <div className="group">
-                            <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:-translate-y-2 text-center">
+                        <div className="group h-full">
+                            <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:-translate-y-2 text-center h-full flex flex-col">
                                 <div className="w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                                     <span className="text-white text-3xl font-bold">3</span>
                                 </div>
                                 <h3 className="text-2xl font-bold text-white mb-4">Thi công & Giám sát</h3>
-                                <p className="text-purple-200 leading-relaxed">
+                                <p className="text-purple-200 leading-relaxed flex-grow">
                                     Thi công chuyên nghiệp với sự giám sát chất lượng liên tục
                                 </p>
                             </div>
                         </div>
 
-                        <div className="group">
-                            <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:-translate-y-2 text-center">
+                        <div className="group h-full">
+                            <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:-translate-y-2 text-center h-full flex flex-col">
                                 <div className="w-20 h-20 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                                     <span className="text-white text-3xl font-bold">4</span>
                                 </div>
                                 <h3 className="text-2xl font-bold text-white mb-4">Nghiệm thu & Bảo hành</h3>
-                                <p className="text-purple-200 leading-relaxed">
+                                <p className="text-purple-200 leading-relaxed flex-grow">
                                     Nghiệm thu kỹ lưỡng và cam kết bảo hành dài hạn
                                 </p>
                             </div>
