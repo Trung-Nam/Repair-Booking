@@ -226,14 +226,14 @@ const ServicesSection = () => {
                 </p>
             </div>
 
-            {/* Search and Filter */}
-            <div className="mb-16 bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 p-8 shadow-2xl">
-                <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 mb-6">
+            {/* Search and Filter - match Services page */}
+            <div className="mb-16 bg-white/10 backdrop-blur-xl rounded-3xl shadow-2xl p-10 border border-white/20">
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-6">
                     {/* Search Input */}
                     <div className="lg:col-span-2">
-                        <label className="block text-sm font-medium text-white mb-2">Tìm kiếm dịch vụ</label>
+                        <label className="block text-lg font-bold text-white mb-3">Tìm kiếm dịch vụ</label>
                         <div className="relative">
-                            <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="absolute left-4 top-1/2 transform -translate-y-1/2 w-6 h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                             </svg>
                             <input
@@ -241,64 +241,63 @@ const ServicesSection = () => {
                                 placeholder="Nhập từ khóa tìm kiếm..."
                                 value={searchParams.keyword}
                                 onChange={(e) => setSearchParams(prev => ({ ...prev, keyword: e.target.value }))}
-                                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                className="w-full pl-14 pr-6 py-4 border-2 border-white/30 rounded-2xl focus:ring-4 focus:ring-purple-500/20 focus:border-purple-500 text-lg bg-white/5 backdrop-blur-xl shadow-lg transition-all duration-300 text-white placeholder-gray-300"
                             />
                         </div>
                     </div>
 
                     {/* Search Field */}
                     <div>
-                        <label className="block text-sm font-medium text-white mb-2">Tìm kiếm theo</label>
+                        <label className="block text-lg font-bold text-white mb-3">Tìm kiếm theo</label>
                         <select
                             value={searchParams.field || ''}
                             onChange={(e) => setSearchParams(prev => ({ ...prev, field: e.target.value ? parseInt(e.target.value) : null }))}
-                            className="w-full py-2 px-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            className="w-full py-4 px-6 border-2 border-white/30 rounded-2xl focus:ring-4 focus:ring-purple-500/20 focus:border-purple-500 text-lg bg-white/5 backdrop-blur-xl shadow-lg transition-all duration-300 text-white"
                         >
-                            <option value="">Chọn trường tìm kiếm</option>
-                            <option value="1">Tên dịch vụ</option>
-                            <option value="2">Danh mục</option>
-                            <option value="3">Tất cả</option>
+                            <option value="" className="bg-gray-800 text-white">Tất cả</option>
+                            <option value="1" className="bg-gray-800 text-white">Tên dịch vụ</option>
+                            <option value="2" className="bg-gray-800 text-white">Danh mục</option>
                         </select>
                     </div>
 
                     {/* Price Range */}
                     <div>
-                        <label className="block text-sm font-medium text-white mb-2">Khoảng giá</label>
-                        <div className="flex gap-2">
+                        <label className="block text-lg font-bold text-white mb-3">Khoảng giá</label>
+                        <div className="flex gap-3">
                             <input
                                 type="number"
                                 placeholder="Từ"
                                 value={searchParams.fromPrice}
                                 onChange={(e) => setSearchParams(prev => ({ ...prev, fromPrice: e.target.value }))}
-                                className="w-full py-2 px-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                className="w-full py-4 px-4 border-2 border-white/30 rounded-2xl focus:ring-4 focus:ring-purple-500/20 focus:border-purple-500 text-lg bg-white/5 backdrop-blur-xl shadow-lg transition-all duration-300 text-white placeholder-gray-300"
                             />
                             <input
                                 type="number"
                                 placeholder="Đến"
                                 value={searchParams.toPrice}
                                 onChange={(e) => setSearchParams(prev => ({ ...prev, toPrice: e.target.value }))}
-                                className="w-full py-2 px-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                className="w-full py-4 px-4 border-2 border-white/30 rounded-2xl focus:ring-4 focus:ring-purple-500/20 focus:border-purple-500 text-lg bg-white/5 backdrop-blur-xl shadow-lg transition-all duration-300 text-white placeholder-gray-300"
                             />
                         </div>
                     </div>
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex gap-4">
+                <div className="flex gap-6">
                     <button
                         onClick={handleSearch}
-                        className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-2 rounded-lg font-medium transition-colors flex items-center gap-2"
+                        className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-10 py-4 rounded-2xl font-black text-xl transition-all duration-300 transform hover:scale-110 shadow-2xl hover:shadow-3xl flex items-center gap-3"
                     >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                         Tìm kiếm
                     </button>
                     <button
                         onClick={handleClearFilters}
-                        className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-2 rounded-lg font-medium transition-colors flex items-center gap-2"
+                        className="bg-white/10 backdrop-blur-xl hover:bg-white/20 text-white px-10 py-4 rounded-2xl font-black text-xl transition-all duration-300 transform hover:scale-110 shadow-xl hover:shadow-2xl border-2 border-white/30 flex items-center gap-3"
                     >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                         </svg>
                         Xóa bộ lọc
@@ -306,13 +305,15 @@ const ServicesSection = () => {
                 </div>
 
                 {/* Results Info */}
-                <div className="mt-4 pt-4 border-t border-gray-200">
-                    <p className="text-sm text-white">
-                        Hiển thị <span className="font-semibold">{services.length}</span> trên tổng số <span className="font-semibold">{paginationInfo.totalItems}</span> dịch vụ
-                        {searchParams.keyword && (
-                            <span> - Kết quả tìm kiếm cho "<span className="font-semibold text-blue-600">{searchParams.keyword}</span>"</span>
-                        )}
-                    </p>
+                <div className="mt-8 pt-6 border-t border-white/30">
+                    <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-2xl p-6">
+                        <p className="text-lg text-white">
+                            Hiển thị <span className="font-black text-purple-300">{services.length}</span> trên tổng số <span className="font-black text-pink-300">{paginationInfo.totalItems}</span> dịch vụ
+                            {searchParams.keyword && (
+                                <span> - Kết quả tìm kiếm cho "<span className="font-black text-purple-300">{searchParams.keyword}</span>"</span>
+                            )}
+                        </p>
+                    </div>
                 </div>
             </div>
 

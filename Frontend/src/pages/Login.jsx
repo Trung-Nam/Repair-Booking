@@ -209,30 +209,6 @@ const Login = () => {
                                 </p>
                             </div>
                         </form>
-
-                        {/* Demo Accounts */}
-                        <div className="mt-8 bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-xl rounded-2xl p-6 border border-purple-400/30">
-                            <div className="flex items-center mb-4">
-                                <svg className="h-5 w-5 text-purple-300 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                <h3 className="text-sm font-bold text-white">Tài khoản demo</h3>
-                            </div>
-                            <div className="space-y-3 text-xs">
-                                <div className="bg-white/10 backdrop-blur-xl rounded-xl p-4 border border-white/20">
-                                    <div className="font-bold text-white mb-1">👑 Admin</div>
-                                    <div className="text-purple-200">admin@demo.com / admin123</div>
-                                </div>
-                                <div className="bg-white/10 backdrop-blur-xl rounded-xl p-4 border border-white/20">
-                                    <div className="font-bold text-white mb-1">👷 Employee</div>
-                                    <div className="text-purple-200">employee@demo.com / emp123</div>
-                                </div>
-                                <div className="bg-white/10 backdrop-blur-xl rounded-xl p-4 border border-white/20">
-                                    <div className="font-bold text-white mb-1">👤 Customer</div>
-                                    <div className="text-purple-200">customer@demo.com / customer123</div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
