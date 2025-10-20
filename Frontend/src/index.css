@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: system-ui, sans-serif;
+  }
+
+  /* Force white text for all form inputs in dark theme */
+  input,
+  select,
+  textarea {
+    color: white !important;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: #d1d5db !important; /* gray-300 */
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    color: white !important;
+  }
+}
+
+@layer utilities {
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Toastify Custom Styles */
+.Toastify__toast-container {
+  z-index: 9999;
+}
+
+.Toastify__toast {
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.Toastify__toast--success {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+}
+
+.Toastify__toast--error {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+}
+
+.Toastify__toast--warning {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
+}
+
+.Toastify__toast--info {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+}
+
+.Toastify__progress-bar {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.Toastify__close-button {
+  color: white;
+  opacity: 0.8;
+}
+
+.Toastify__close-button:hover {
+  opacity: 1;
+}
+
+.Toastify__toast-body {
+  font-weight: 500;
+}
