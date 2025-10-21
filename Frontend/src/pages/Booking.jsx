@@ -125,10 +125,10 @@ const Booking = () => {
                 setSuccess(successMessage);
                 toast.success(successMessage);
 
-                // Navigate to booking history after 3 seconds
+                // Navigate to booking history immediately
                 setTimeout(() => {
                     navigate('/booking-history');
-                }, 3000);
+                }, 1500);
             } else {
                 const errorMessage = response.data.message || 'Đặt dịch vụ thất bại. Vui lòng thử lại.';
                 setError(errorMessage);
