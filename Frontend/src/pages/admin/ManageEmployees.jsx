@@ -49,47 +49,47 @@ const ConfirmModal = ({ isOpen, onClose, onConfirm, title, message, confirmText,
     const styles = getTypeStyles();
 
     return (
-        <div className="fixed inset-0 z-50 overflow-y-auto">
-            <div className="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+        <div className="fixed inset-0 z-[9999] overflow-y-auto">
+            <div className="flex items-end justify-center min-h-screen px-4 pt-32 pb-20 text-center sm:block sm:p-0">
                 {/* Background overlay */}
                 <div
-                    className="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75"
+                    className="fixed inset-0 transition-opacity bg-black/50 backdrop-blur-sm"
                     onClick={onClose}
                 ></div>
 
                 {/* Modal panel */}
-                <div className="inline-block align-bottom bg-white rounded-2xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-                    <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div className="inline-block translate-y-full align-bottom bg-white/10 backdrop-blur-xl rounded-3xl text-left overflow-hidden shadow-2xl transform translate-y-8 transition-all sm:my-8 sm:max-w-lg sm:w-full border border-white/20">
+                    <div className="bg-white/5 backdrop-blur-xl px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                         <div className="sm:flex sm:items-start">
-                            <div className={`mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full ${styles.iconBg} sm:mx-0 sm:h-10 sm:w-10`}>
+                            <div className={`mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-2xl ${styles.iconBg} sm:mx-0 sm:h-10 sm:w-10`}>
                                 <div className={styles.iconColor}>
                                     {styles.icon}
                                 </div>
                             </div>
                             <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left flex-1">
-                                <h3 className="text-lg font-semibold leading-6 text-gray-900">
+                                <h3 className="text-lg font-bold leading-6 text-white">
                                     {title}
                                 </h3>
                                 <div className="mt-2">
-                                    <p className="text-sm text-gray-600">
+                                    <p className="text-sm text-purple-200">
                                         {message}
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse gap-3">
+                    <div className="bg-white/5 backdrop-blur-xl px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse gap-3">
                         <button
                             type="button"
                             onClick={onConfirm}
-                            className={`w-full inline-flex justify-center rounded-lg px-4 py-2.5 text-sm font-semibold text-white shadow-sm ${styles.button} focus:outline-none focus:ring-2 focus:ring-offset-2 sm:w-auto transition-all duration-200`}
+                            className={`w-full inline-flex justify-center rounded-2xl px-6 py-3 text-sm font-bold text-white shadow-lg ${styles.button} focus:outline-none focus:ring-2 focus:ring-offset-2 sm:w-auto transition-all duration-300 transform hover:scale-105`}
                         >
                             {confirmText || 'Xác nhận'}
                         </button>
                         <button
                             type="button"
                             onClick={onClose}
-                            className="mt-3 w-full inline-flex justify-center rounded-lg px-4 py-2.5 text-sm font-semibold text-gray-700 bg-white border border-gray-300 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:mt-0 sm:w-auto transition-all duration-200"
+                            className="mt-3 w-full inline-flex justify-center rounded-2xl px-6 py-3 text-sm font-bold text-purple-200 bg-white/10 backdrop-blur-xl border border-white/30 shadow-lg hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:mt-0 sm:w-auto transition-all duration-300 transform hover:scale-105"
                         >
                             {cancelText || 'Hủy'}
                         </button>
@@ -193,18 +193,18 @@ const EmployeeModal = ({ isOpen, onClose, onSave }) => {
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 flex items-center justify-center p-4">
-            <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-2xl">
+        <div className="fixed  inset-0 bg-black/50 backdrop-blur-sm overflow-y-auto h-full w-full z-[9999] flex items-end justify-center p-4 pt-32">
+            <div className="relative -translate-y-24 bg-white/10 backdrop-blur-xl rounded-3xl shadow-2xl w-full max-w-2xl border border-white/20 transform translate-y-8">
                 <div className="p-8">
                     {/* Header */}
-                    <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center justify-between mb-8">
                         <div>
-                            <h3 className="text-2xl font-bold text-gray-900">Tạo tài khoản nhân viên</h3>
-                            <p className="text-sm text-gray-500 mt-1">Nhập thông tin để tạo tài khoản mới</p>
+                            <h3 className="text-3xl font-black text-white">Tạo tài khoản nhân viên</h3>
+                            <p className="text-sm text-purple-200 mt-2">Nhập thông tin để tạo tài khoản mới</p>
                         </div>
                         <button
                             onClick={onClose}
-                            className="text-gray-400 hover:text-gray-600 transition-colors"
+                            className="text-purple-300 hover:text-white transition-colors p-2 hover:bg-white/10 rounded-full"
                         >
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -213,21 +213,21 @@ const EmployeeModal = ({ isOpen, onClose, onSave }) => {
                     </div>
 
                     {error && (
-                        <div className="mb-6 rounded-xl bg-red-50 p-4 border border-red-200">
+                        <div className="mb-8 bg-red-500/20 backdrop-blur-xl rounded-2xl p-6 border border-red-400/30">
                             <div className="flex items-center">
-                                <svg className="w-5 h-5 text-red-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-5 h-5 text-red-300 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
-                                <div className="text-sm text-red-700 font-medium">{error}</div>
+                                <div className="text-sm text-red-200 font-bold">{error}</div>
                             </div>
                         </div>
                     )}
 
-                    <form onSubmit={handleSubmit} className="space-y-6">
+                    <form onSubmit={handleSubmit} className="space-y-8">
                         {/* Full Name */}
                         <div>
-                            <label htmlFor="fullname" className="block text-sm font-semibold text-gray-700 mb-2">
-                                Họ và tên <span className="text-red-500">*</span>
+                            <label htmlFor="fullname" className="block text-sm font-bold text-white mb-3">
+                                Họ và tên <span className="text-red-400">*</span>
                             </label>
                             <input
                                 type="text"
@@ -235,17 +235,17 @@ const EmployeeModal = ({ isOpen, onClose, onSave }) => {
                                 id="fullname"
                                 value={formData.fullname}
                                 onChange={handleChange}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors text-base"
+                                className="w-full px-6 py-4 border-2 border-white/30 rounded-2xl focus:ring-4 focus:ring-purple-500/20 focus:border-purple-500 transition-all duration-300 bg-white/5 backdrop-blur-xl text-white text-lg placeholder-gray-300"
                                 placeholder="Nhập họ và tên"
                                 required
                             />
                         </div>
 
                         {/* Email and Phone */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div>
-                                <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
-                                    Email <span className="text-red-500">*</span>
+                                <label htmlFor="email" className="block text-sm font-bold text-white mb-3">
+                                    Email <span className="text-red-400">*</span>
                                 </label>
                                 <input
                                     type="email"
@@ -253,15 +253,15 @@ const EmployeeModal = ({ isOpen, onClose, onSave }) => {
                                     id="email"
                                     value={formData.email}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors text-base"
+                                    className="w-full px-6 py-4 border-2 border-white/30 rounded-2xl focus:ring-4 focus:ring-purple-500/20 focus:border-purple-500 transition-all duration-300 bg-white/5 backdrop-blur-xl text-white text-lg placeholder-gray-300"
                                     placeholder="email@example.com"
                                     required
                                 />
                             </div>
 
                             <div>
-                                <label htmlFor="phoneNumber" className="block text-sm font-semibold text-gray-700 mb-2">
-                                    Số điện thoại <span className="text-red-500">*</span>
+                                <label htmlFor="phoneNumber" className="block text-sm font-bold text-white mb-3">
+                                    Số điện thoại <span className="text-red-400">*</span>
                                 </label>
                                 <input
                                     type="tel"
@@ -269,7 +269,7 @@ const EmployeeModal = ({ isOpen, onClose, onSave }) => {
                                     id="phoneNumber"
                                     value={formData.phoneNumber}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors text-base"
+                                    className="w-full px-6 py-4 border-2 border-white/30 rounded-2xl focus:ring-4 focus:ring-purple-500/20 focus:border-purple-500 transition-all duration-300 bg-white/5 backdrop-blur-xl text-white text-lg placeholder-gray-300"
                                     placeholder="0123456789"
                                     required
                                 />
@@ -277,10 +277,10 @@ const EmployeeModal = ({ isOpen, onClose, onSave }) => {
                         </div>
 
                         {/* Password and Confirm Password */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div>
-                                <label htmlFor="password" className="block text-sm font-semibold text-gray-700 mb-2">
-                                    Mật khẩu <span className="text-red-500">*</span>
+                                <label htmlFor="password" className="block text-sm font-bold text-white mb-3">
+                                    Mật khẩu <span className="text-red-400">*</span>
                                 </label>
                                 <input
                                     type="password"
@@ -288,7 +288,7 @@ const EmployeeModal = ({ isOpen, onClose, onSave }) => {
                                     id="password"
                                     value={formData.password}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors text-base"
+                                    className="w-full px-6 py-4 border-2 border-white/30 rounded-2xl focus:ring-4 focus:ring-purple-500/20 focus:border-purple-500 transition-all duration-300 bg-white/5 backdrop-blur-xl text-white text-lg placeholder-gray-300"
                                     placeholder="Tối thiểu 6 ký tự"
                                     required
                                     minLength={6}
@@ -296,8 +296,8 @@ const EmployeeModal = ({ isOpen, onClose, onSave }) => {
                             </div>
 
                             <div>
-                                <label htmlFor="confirmPassword" className="block text-sm font-semibold text-gray-700 mb-2">
-                                    Xác nhận mật khẩu <span className="text-red-500">*</span>
+                                <label htmlFor="confirmPassword" className="block text-sm font-bold text-white mb-3">
+                                    Xác nhận mật khẩu <span className="text-red-400">*</span>
                                 </label>
                                 <input
                                     type="password"
@@ -305,7 +305,7 @@ const EmployeeModal = ({ isOpen, onClose, onSave }) => {
                                     id="confirmPassword"
                                     value={formData.confirmPassword}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors text-base"
+                                    className="w-full px-6 py-4 border-2 border-white/30 rounded-2xl focus:ring-4 focus:ring-purple-500/20 focus:border-purple-500 transition-all duration-300 bg-white/5 backdrop-blur-xl text-white text-lg placeholder-gray-300"
                                     placeholder="Nhập lại mật khẩu"
                                     required
                                     minLength={6}
@@ -316,19 +316,19 @@ const EmployeeModal = ({ isOpen, onClose, onSave }) => {
 
 
                         {/* Action Buttons */}
-                        <div className="flex justify-end space-x-4 pt-6 border-t border-gray-200">
+                        <div className="flex justify-end space-x-6 pt-8 border-t border-white/20">
                             <button
                                 type="button"
                                 onClick={onClose}
                                 disabled={isSubmitting}
-                                className="px-6 py-3 border border-gray-300 rounded-xl text-gray-700 font-medium hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="px-8 py-4 border border-white/30 rounded-2xl text-purple-200 font-bold hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                             >
                                 Hủy
                             </button>
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                                className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold rounded-2xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-purple-500/25 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center gap-3"
                             >
                                 {isSubmitting ? (
                                     <>
@@ -343,7 +343,7 @@ const EmployeeModal = ({ isOpen, onClose, onSave }) => {
                                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                                         </svg>
-                                        <span>Tạo tài khoản</span>
+                                        <span>➕ Tạo tài khoản</span>
                                     </>
                                 )}
                             </button>
@@ -495,315 +495,332 @@ const ManageEmployees = () => {
 
     if (isLoading) {
         return (
-            <div className="min-h-screen flex items-center justify-center">
-                <LoadingSpinner size="lg" />
+            <div className="min-h-screen bg-gradient-to-br from-purple-900 via-purple-800 to-purple-900 flex items-center justify-center">
+                <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-12 shadow-2xl border border-white/20">
+                    <LoadingSpinner size="lg" />
+                    <p className="mt-6 text-purple-200 text-xl font-medium">Đang tải danh sách nhân viên...</p>
+                </div>
             </div>
         );
     }
 
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div className="mb-8">
-                <div className="flex justify-between items-center">
-                    <div>
-                        <h1 className="text-3xl font-bold text-gray-900 mb-2">Quản lý nhân viên</h1>
-                        <p className="text-gray-600">Tạo và quản lý tài khoản nhân viên</p>
+        <div className="min-h-screen bg-gradient-to-br from-purple-900 via-purple-800 to-purple-900 text-white">
+            {/* Hero Section */}
+            <div className="relative overflow-hidden">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(168,85,247,0.1),transparent_50%)]"></div>
+                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                    <div className="text-center mb-12">
+                        <div className="inline-flex items-center px-6 py-3 rounded-full bg-purple-500/20 border border-purple-400/30 backdrop-blur-sm mb-6">
+                            <span className="text-purple-200 text-sm font-medium">👥 Quản lý nhân viên</span>
+                        </div>
+                        <h1 className="text-5xl md:text-6xl font-black mb-6">
+                            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Quản lý nhân viên</span>
+                        </h1>
+                        <p className="text-xl text-purple-200 max-w-4xl mx-auto leading-relaxed">
+                            Tạo và quản lý tài khoản nhân viên
+                        </p>
                     </div>
-                    <button
-                        onClick={() => setIsModalOpen(true)}
-                        className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-xl text-sm font-medium transition-colors shadow-lg hover:shadow-xl"
-                    >
-                        + Tạo nhân viên mới
-                    </button>
                 </div>
             </div>
 
-            {/* Search and Filter */}
-            <div className="mb-8 bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-                    {/* Search Input */}
-                    <div className="lg:col-span-2">
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Tìm kiếm nhân viên</label>
-                        <div className="relative">
-                            <svg className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+
+                {/* Search and Filter */}
+                <div className="mb-8 bg-white/10 backdrop-blur-xl rounded-3xl shadow-2xl p-8 border border-white/20">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                        {/* Search Input */}
+                        <div className="lg:col-span-2">
+                            <label className="block text-sm font-bold text-white mb-3">Tìm kiếm nhân viên</label>
+                            <div className="relative">
+                                <svg className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+                                <input
+                                    type="text"
+                                    placeholder="Nhập từ khóa tìm kiếm..."
+                                    value={searchParams.keyword}
+                                    onChange={(e) => setSearchParams(prev => ({ ...prev, keyword: e.target.value }))}
+                                    className="w-full pl-12 pr-6 py-4 border-2 border-white/30 rounded-2xl focus:ring-4 focus:ring-purple-500/20 focus:border-purple-500 transition-all duration-300 bg-white/5 backdrop-blur-xl text-white text-lg placeholder-gray-300"
+                                />
+                            </div>
+                        </div>
+
+                        {/* Search Field */}
+                        <div>
+                            <label className="block text-sm font-bold text-white mb-3">Tìm kiếm theo</label>
+                            <select
+                                value={searchParams.field || ''}
+                                onChange={(e) => setSearchParams(prev => ({ ...prev, field: e.target.value ? parseInt(e.target.value) : null }))}
+                                className="w-full py-4 px-6 border-2 border-white/30 rounded-2xl focus:ring-4 focus:ring-purple-500/20 focus:border-purple-500 transition-all duration-300 bg-white/5 backdrop-blur-xl text-white text-lg"
+                            >
+                                <option value="" className="bg-gray-800 text-white">Tất cả</option>
+                                <option value="1" className="bg-gray-800 text-white">Tên nhân viên</option>
+                                <option value="2" className="bg-gray-800 text-white">Email</option>
+                                <option value="3" className="bg-gray-800 text-white">Số điện thoại</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex gap-4 mb-6">
+                        <button
+                            onClick={handleSearch}
+                            className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-purple-500/25 flex items-center gap-3"
+                        >
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                             </svg>
-                            <input
-                                type="text"
-                                placeholder="Nhập từ khóa tìm kiếm..."
-                                value={searchParams.keyword}
-                                onChange={(e) => setSearchParams(prev => ({ ...prev, keyword: e.target.value }))}
-                                className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-lg"
-                            />
-                        </div>
-                    </div>
-
-                    {/* Search Field */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Tìm kiếm theo</label>
-                        <select
-                            value={searchParams.field || ''}
-                            onChange={(e) => setSearchParams(prev => ({ ...prev, field: e.target.value ? parseInt(e.target.value) : null }))}
-                            className="w-full py-3 px-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-lg"
+                            🔍 Tìm kiếm
+                        </button>
+                        <button
+                            onClick={handleClearFilters}
+                            className="bg-white/10 backdrop-blur-xl border border-white/30 text-purple-200 hover:bg-white/20 px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:scale-105 flex items-center gap-3"
                         >
-                            <option value="">Tất cả</option>
-                            <option value="1">Tên nhân viên</option>
-                            <option value="2">Email</option>
-                            <option value="3">Số điện thoại</option>
-                        </select>
-                    </div>
-                </div>
-
-                {/* Action Buttons */}
-                <div className="flex gap-4">
-                    <button
-                        onClick={handleSearch}
-                        className="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3 rounded-xl font-medium transition-colors flex items-center gap-2"
-                    >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                        Tìm kiếm
-                    </button>
-                    <button
-                        onClick={handleClearFilters}
-                        className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-8 py-3 rounded-xl font-medium transition-colors flex items-center gap-2"
-                    >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                        Xóa bộ lọc
-                    </button>
-                </div>
-
-                {/* Results Info */}
-                <div className="mt-4 pt-4 border-t border-gray-200">
-                    <p className="text-sm text-gray-600">
-                        Hiển thị <span className="font-semibold">{employees.length}</span> trên tổng số <span className="font-semibold">{paginationInfo.totalItems}</span> nhân viên
-                        {searchParams.keyword && (
-                            <span> - Kết quả tìm kiếm cho "<span className="font-semibold text-primary-600">{searchParams.keyword}</span>"</span>
-                        )}
-                    </p>
-                </div>
-            </div>
-
-            {success && (
-                <div className="mb-6 rounded-md bg-green-50 p-4">
-                    <div className="text-sm text-green-700">{success}</div>
-                </div>
-            )}
-
-            {error && (
-                <div className="mb-6 rounded-md bg-red-50 p-4">
-                    <div className="text-sm text-red-700">{error}</div>
-                </div>
-            )}
-
-            <div className="bg-white shadow-lg rounded-2xl overflow-hidden border border-gray-100">
-                {isLoading ? (
-                    <div className="flex justify-center py-20">
-                        <div className="text-center">
-                            <LoadingSpinner size="lg" />
-                            <p className="mt-4 text-gray-600">Đang tải danh sách nhân viên...</p>
-                        </div>
-                    </div>
-                ) : employees.length === 0 ? (
-                    <div className="text-center py-20">
-                        <div className="bg-gray-50 rounded-xl p-8 max-w-md mx-auto">
-                            <svg className="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                             </svg>
-                            <div className="text-gray-600 text-lg mb-4">
-                                {searchParams.keyword ? 'Không tìm thấy nhân viên nào' : 'Chưa có nhân viên nào'}
-                            </div>
-                            <p className="text-gray-500 mb-4">
-                                {searchParams.keyword ? 'Thử thay đổi từ khóa tìm kiếm' : 'Hãy tạo nhân viên đầu tiên'}
-                            </p>
-                            {searchParams.keyword ? (
-                                <button
-                                    onClick={handleClearFilters}
-                                    className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
-                                >
-                                    Xóa bộ lọc
-                                </button>
-                            ) : (
-                                <button
-                                    onClick={() => setIsModalOpen(true)}
-                                    className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
-                                >
-                                    Tạo nhân viên đầu tiên
-                                </button>
-                            )}
-                        </div>
+                            🗑️ Xóa bộ lọc
+                        </button>
+                        <button
+                            onClick={() => setIsModalOpen(true)}
+                            className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-green-500/25 flex items-center gap-3"
+                        >
+                            ➕ Tạo nhân viên mới
+                        </button>
                     </div>
-                ) : (
-                    <>
-                        <div className="overflow-x-auto">
-                            <table className="min-w-full divide-y divide-gray-200">
-                                <thead className="bg-gray-50">
-                                    <tr>
-                                        <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                            Nhân viên
-                                        </th>
-                                        <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                            Email
-                                        </th>
-                                        <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                            Số điện thoại
-                                        </th>
-                                        <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                            Vai trò
-                                        </th>
-                                        <th className="px-6 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                            Trạng thái
-                                        </th>
-                                        <th className="px-6 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                            Thao tác
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody className="bg-white divide-y divide-gray-200">
-                                    {employees.map((employee, index) => (
-                                        <tr key={employee.id || index} className="hover:bg-gray-50 transition-colors">
-                                            <td className="px-6 py-4 whitespace-nowrap">
-                                                <div className="flex items-center">
-                                                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center shadow-md ${employee.status
-                                                        ? 'bg-gradient-to-br from-primary-500 to-primary-600'
-                                                        : 'bg-gradient-to-br from-gray-400 to-gray-500'
-                                                        }`}>
-                                                        <span className="text-white font-bold text-lg">
-                                                            {employee.fullname?.charAt(0)?.toUpperCase() || 'N'}
+
+                    {/* Results Info */}
+                    <div className="pt-6 border-t border-white/20">
+                        <p className="text-sm text-purple-200">
+                            Hiển thị <span className="font-bold text-white">{employees.length}</span> trên tổng số <span className="font-bold text-white">{paginationInfo.totalItems}</span> nhân viên
+                            {searchParams.keyword && (
+                                <span> - Kết quả tìm kiếm cho "<span className="font-bold text-transparent bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text">{searchParams.keyword}</span>"</span>
+                            )}
+                        </p>
+                    </div>
+                </div>
+
+                {success && (
+                    <div className="mb-8 bg-green-500/20 backdrop-blur-xl rounded-2xl p-6 border border-green-400/30">
+                        <div className="text-sm text-green-200 font-medium">{success}</div>
+                    </div>
+                )}
+
+                {error && (
+                    <div className="mb-8 bg-red-500/20 backdrop-blur-xl rounded-2xl p-6 border border-red-400/30">
+                        <div className="text-sm text-red-200 font-medium">{error}</div>
+                    </div>
+                )}
+
+                <div className="bg-white/10 backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden border border-white/20">
+                    {isLoading ? (
+                        <div className="flex justify-center py-20">
+                            <div className="text-center">
+                                <LoadingSpinner size="lg" />
+                                <p className="mt-4 text-purple-200">Đang tải danh sách nhân viên...</p>
+                            </div>
+                        </div>
+                    ) : employees.length === 0 ? (
+                        <div className="text-center py-20">
+                            <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-12 max-w-2xl mx-auto border border-white/20">
+                                <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                                    <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                                    </svg>
+                                </div>
+                                <div className="text-white text-2xl font-bold mb-4">
+                                    {searchParams.keyword ? 'Không tìm thấy nhân viên nào' : 'Chưa có nhân viên nào'}
+                                </div>
+                                <p className="text-purple-200 mb-8">
+                                    {searchParams.keyword ? 'Thử thay đổi từ khóa tìm kiếm' : 'Hãy tạo nhân viên đầu tiên'}
+                                </p>
+                                {searchParams.keyword ? (
+                                    <button
+                                        onClick={handleClearFilters}
+                                        className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-purple-500/25"
+                                    >
+                                        🗑️ Xóa bộ lọc
+                                    </button>
+                                ) : (
+                                    <button
+                                        onClick={() => setIsModalOpen(true)}
+                                        className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-green-500/25"
+                                    >
+                                        ➕ Tạo nhân viên đầu tiên
+                                    </button>
+                                )}
+                            </div>
+                        </div>
+                    ) : (
+                        <>
+                            <div className="overflow-x-auto">
+                                <table className="min-w-full divide-y divide-white/20">
+                                    <thead className="bg-white/5 backdrop-blur-xl">
+                                        <tr>
+                                            <th className="px-6 py-6 text-left text-sm font-bold text-white uppercase tracking-wider">
+                                                👤 Nhân viên
+                                            </th>
+                                            <th className="px-6 py-6 text-left text-sm font-bold text-white uppercase tracking-wider">
+                                                📧 Email
+                                            </th>
+                                            <th className="px-6 py-6 text-left text-sm font-bold text-white uppercase tracking-wider">
+                                                📱 Số điện thoại
+                                            </th>
+                                            <th className="px-6 py-6 text-left text-sm font-bold text-white uppercase tracking-wider">
+                                                🎭 Vai trò
+                                            </th>
+                                            <th className="px-6 py-6 text-center text-sm font-bold text-white uppercase tracking-wider">
+                                                ⚡ Trạng thái
+                                            </th>
+                                            <th className="px-6 py-6 text-center text-sm font-bold text-white uppercase tracking-wider">
+                                                ⚙️ Thao tác
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="bg-white/5 backdrop-blur-xl divide-y divide-white/20">
+                                        {employees.map((employee, index) => (
+                                            <tr key={employee.id || index} className="hover:bg-white/10 transition-all duration-300">
+                                                <td className="px-6 py-6 whitespace-nowrap">
+                                                    <div className="flex items-center">
+                                                        <div className={`w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg ${employee.status
+                                                            ? 'bg-gradient-to-br from-purple-500 to-pink-500'
+                                                            : 'bg-gradient-to-br from-gray-500 to-gray-600'
+                                                            }`}>
+                                                            <span className="text-white font-black text-xl">
+                                                                {employee.fullname?.charAt(0)?.toUpperCase() || 'N'}
+                                                            </span>
+                                                        </div>
+                                                        <div className="ml-4">
+                                                            <div className="text-lg font-bold text-white">{employee.fullname}</div>
+                                                            <div className="text-sm text-purple-200">ID: #{employee.id}</div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td className="px-6 py-6 whitespace-nowrap">
+                                                    <div className="text-lg text-white font-medium">{employee.email}</div>
+                                                </td>
+                                                <td className="px-6 py-6 whitespace-nowrap">
+                                                    <div className="text-lg text-white font-medium">{employee.phoneNumber}</div>
+                                                </td>
+                                                <td className="px-6 py-6 whitespace-nowrap">
+                                                    <span className="inline-flex items-center px-4 py-2 rounded-2xl text-sm font-bold bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg">
+                                                        {employee.role === 2 ? '👨‍💼 Nhân viên' : employee.role === 1 ? '👑 Quản trị viên' : '👤 Khách hàng'}
+                                                    </span>
+                                                </td>
+                                                <td className="px-6 py-6 whitespace-nowrap text-center">
+                                                    {employee.status ? (
+                                                        <span className="inline-flex items-center px-4 py-2 rounded-2xl text-sm font-bold bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-lg">
+                                                            <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                                            </svg>
+                                                            ✅ Đã kích hoạt
                                                         </span>
-                                                    </div>
-                                                    <div className="ml-4">
-                                                        <div className="text-sm font-semibold text-gray-900">{employee.fullname}</div>
-                                                        <div className="text-xs text-gray-500">ID: #{employee.id}</div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td className="px-6 py-4 whitespace-nowrap">
-                                                <div className="text-sm text-gray-900">{employee.email}</div>
-                                            </td>
-                                            <td className="px-6 py-4 whitespace-nowrap">
-                                                <div className="text-sm text-gray-900">{employee.phoneNumber}</div>
-                                            </td>
-                                            <td className="px-6 py-4 whitespace-nowrap">
-                                                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-primary-100 text-primary-800">
-                                                    {employee.role === 2 ? 'Nhân viên' : employee.role === 1 ? 'Quản trị viên' : 'Khách hàng'}
-                                                </span>
-                                            </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-center">
-                                                {employee.status ? (
-                                                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800 border border-green-200">
-                                                        <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                                                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                                                        </svg>
-                                                        Đã kích hoạt
-                                                    </span>
-                                                ) : (
-                                                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-red-100 text-red-800 border border-red-200">
-                                                        <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                                                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                                                        </svg>
-                                                        Chưa kích hoạt
-                                                    </span>
-                                                )}
-                                            </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-center">
+                                                    ) : (
+                                                        <span className="inline-flex items-center px-4 py-2 rounded-2xl text-sm font-bold bg-gradient-to-r from-red-500 to-pink-500 text-white shadow-lg">
+                                                            <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                                                            </svg>
+                                                            ❌ Chưa kích hoạt
+                                                        </span>
+                                                    )}
+                                                </td>
+                                                <td className="px-6 py-6 whitespace-nowrap text-center">
+                                                    <button
+                                                        onClick={() => handleToggleStatus(employee.id, employee.status)}
+                                                        className={`inline-flex items-center px-6 py-3 rounded-2xl text-sm font-bold transition-all duration-300 transform hover:scale-105 shadow-xl ${employee.status
+                                                            ? 'bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white'
+                                                            : 'bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white'
+                                                            }`}
+                                                    >
+                                                        {employee.status ? (
+                                                            <>
+                                                                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                                                                </svg>
+                                                                🚫 Hủy kích hoạt
+                                                            </>
+                                                        ) : (
+                                                            <>
+                                                                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                                </svg>
+                                                                ✅ Kích hoạt
+                                                            </>
+                                                        )}
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            {/* Pagination */}
+                            {paginationInfo.totalPages > 1 && (
+                                <div className="bg-white/5 backdrop-blur-xl px-6 py-6 border-t border-white/20">
+                                    <div className="flex justify-center">
+                                        <div className="flex items-center gap-3">
+                                            {/* Previous Button */}
+                                            <button
+                                                onClick={() => handlePageChange(paginationInfo.currentPage - 1)}
+                                                disabled={paginationInfo.currentPage === 1}
+                                                className="px-6 py-3 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/30 text-white hover:bg-white/20 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105"
+                                            >
+                                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                                </svg>
+                                            </button>
+
+                                            {/* Page Numbers */}
+                                            {Array.from({ length: paginationInfo.totalPages }, (_, i) => i + 1).map(page => (
                                                 <button
-                                                    onClick={() => handleToggleStatus(employee.id, employee.status)}
-                                                    className={`inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${employee.status
-                                                        ? 'bg-red-50 text-red-700 hover:bg-red-100 border border-red-200 hover:border-red-300'
-                                                        : 'bg-green-50 text-green-700 hover:bg-green-100 border border-green-200 hover:border-green-300'
+                                                    key={page}
+                                                    onClick={() => handlePageChange(page)}
+                                                    className={`px-6 py-3 rounded-2xl font-bold transition-all duration-300 transform hover:scale-110 ${page === paginationInfo.currentPage
+                                                        ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-2xl shadow-purple-500/25'
+                                                        : 'bg-white/10 backdrop-blur-xl border border-white/30 text-purple-200 hover:bg-white/20'
                                                         }`}
                                                 >
-                                                    {employee.status ? (
-                                                        <>
-                                                            <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
-                                                            </svg>
-                                                            Hủy kích hoạt
-                                                        </>
-                                                    ) : (
-                                                        <>
-                                                            <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                            </svg>
-                                                            Kích hoạt
-                                                        </>
-                                                    )}
+                                                    {page}
                                                 </button>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
+                                            ))}
 
-                        {/* Pagination */}
-                        {paginationInfo.totalPages > 1 && (
-                            <div className="bg-gray-50 px-6 py-4 border-t border-gray-200">
-                                <div className="flex justify-center">
-                                    <div className="flex items-center gap-2">
-                                        {/* Previous Button */}
-                                        <button
-                                            onClick={() => handlePageChange(paginationInfo.currentPage - 1)}
-                                            disabled={paginationInfo.currentPage === 1}
-                                            className="px-4 py-2 rounded-lg bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                                        >
-                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                            </svg>
-                                        </button>
-
-                                        {/* Page Numbers */}
-                                        {Array.from({ length: paginationInfo.totalPages }, (_, i) => i + 1).map(page => (
+                                            {/* Next Button */}
                                             <button
-                                                key={page}
-                                                onClick={() => handlePageChange(page)}
-                                                className={`px-4 py-2 rounded-lg font-medium transition-colors ${page === paginationInfo.currentPage
-                                                    ? 'bg-primary-600 text-white'
-                                                    : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50'
-                                                    }`}
+                                                onClick={() => handlePageChange(paginationInfo.currentPage + 1)}
+                                                disabled={paginationInfo.currentPage === paginationInfo.totalPages}
+                                                className="px-6 py-3 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/30 text-white hover:bg-white/20 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105"
                                             >
-                                                {page}
+                                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                </svg>
                                             </button>
-                                        ))}
-
-                                        {/* Next Button */}
-                                        <button
-                                            onClick={() => handlePageChange(paginationInfo.currentPage + 1)}
-                                            disabled={paginationInfo.currentPage === paginationInfo.totalPages}
-                                            className="px-4 py-2 rounded-lg bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                                        >
-                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                            </svg>
-                                        </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        )}
-                    </>
-                )}
+                            )}
+                        </>
+                    )}
+                </div>
+
+                <EmployeeModal
+                    isOpen={isModalOpen}
+                    onClose={closeModal}
+                    onSave={handleCreateEmployee}
+                />
+
+                <ConfirmModal
+                    isOpen={confirmModal.isOpen}
+                    onClose={() => setConfirmModal({ ...confirmModal, isOpen: false })}
+                    onConfirm={confirmModal.onConfirm}
+                    title={confirmModal.title}
+                    message={confirmModal.message}
+                    type={confirmModal.type}
+                    confirmText={confirmModal.confirmText}
+                    cancelText={confirmModal.cancelText}
+                />
             </div>
-
-            <EmployeeModal
-                isOpen={isModalOpen}
-                onClose={closeModal}
-                onSave={handleCreateEmployee}
-            />
-
-            <ConfirmModal
-                isOpen={confirmModal.isOpen}
-                onClose={() => setConfirmModal({ ...confirmModal, isOpen: false })}
-                onConfirm={confirmModal.onConfirm}
-                title={confirmModal.title}
-                message={confirmModal.message}
-                type={confirmModal.type}
-                confirmText={confirmModal.confirmText}
-                cancelText={confirmModal.cancelText}
-            />
         </div>
     );
 };
