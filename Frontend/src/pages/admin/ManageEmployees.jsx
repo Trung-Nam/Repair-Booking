@@ -194,7 +194,7 @@ const EmployeeModal = ({ isOpen, onClose, onSave }) => {
 
     return (
         <div className="fixed  inset-0 bg-black/50 backdrop-blur-sm overflow-y-auto h-full w-full z-[9999] flex items-end justify-center p-4 pt-32">
-            <div className="relative -translate-y-24 bg-white/10 backdrop-blur-xl rounded-3xl shadow-2xl w-full max-w-2xl border border-white/20 transform translate-y-8">
+            <div className="relative -translate-y-32 bg-white/10 backdrop-blur-xl rounded-3xl shadow-2xl w-full max-w-2xl border border-white/20 transform translate-y-8">
                 <div className="p-8">
                     {/* Header */}
                     <div className="flex items-center justify-between mb-8">
