@@ -581,7 +581,7 @@ const BookingHistory = () => {
                 {/* Rating Modal */}
                 {isRatingModalOpen && (
                     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-end justify-center pt-32 z-[9999]">
-                        <div className="bg-white/10 backdrop-blur-xl rounded-3xl shadow-2xl max-w-md w-full mx-4 transform translate-y-8 transition-all border border-white/20">
+                        <div className="bg-white/10 -translate-y-48 backdrop-blur-xl rounded-3xl shadow-2xl max-w-md w-full mx-4 transform translate-y-8 transition-all border border-white/20">
                             {/* Header */}
                             <div className="sticky top-0 bg-white/5 backdrop-blur-xl border-b border-white/20 px-6 py-4 rounded-t-3xl">
                                 <div className="flex items-center justify-between">
