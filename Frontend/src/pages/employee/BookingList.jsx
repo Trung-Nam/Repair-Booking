@@ -61,47 +61,47 @@ const ConfirmModal = ({ isOpen, onClose, onConfirm, title, message, confirmText,
     const styles = getTypeStyles();
 
     return (
-        <div className="fixed inset-0 z-50 overflow-y-auto">
-            <div className="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+        <div className="fixed inset-0 z-[9999] overflow-y-auto">
+            <div className="flex items-end justify-center min-h-screen px-4 pt-32 pb-20 text-center sm:block sm:p-0">
                 {/* Background overlay */}
                 <div
-                    className="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75"
+                    className="fixed inset-0 transition-opacity bg-black/50 backdrop-blur-sm"
                     onClick={onClose}
                 ></div>
 
                 {/* Modal panel */}
-                <div className="inline-block align-bottom bg-white rounded-2xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-                    <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div className="inline-block translate-y-full align-bottom bg-white/10 backdrop-blur-xl rounded-3xl text-left overflow-hidden shadow-2xl transform translate-y-8 transition-all sm:my-8 sm:max-w-lg sm:w-full border border-white/20">
+                    <div className="bg-white/5 backdrop-blur-xl px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                         <div className="sm:flex sm:items-start">
-                            <div className={`mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full ${styles.iconBg} sm:mx-0 sm:h-10 sm:w-10`}>
+                            <div className={`mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-2xl ${styles.iconBg} sm:mx-0 sm:h-10 sm:w-10`}>
                                 <div className={styles.iconColor}>
                                     {styles.icon}
                                 </div>
                             </div>
                             <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left flex-1">
-                                <h3 className="text-lg font-semibold leading-6 text-gray-900">
+                                <h3 className="text-lg font-bold leading-6 text-white">
                                     {title}
                                 </h3>
                                 <div className="mt-2">
-                                    <p className="text-sm text-gray-600">
+                                    <p className="text-sm text-purple-200">
                                         {message}
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse gap-3">
+                    <div className="bg-white/5 backdrop-blur-xl px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse gap-3">
                         <button
                             type="button"
                             onClick={onConfirm}
-                            className={`w-full inline-flex justify-center rounded-lg px-4 py-2.5 text-sm font-semibold text-white shadow-sm ${styles.button} focus:outline-none focus:ring-2 focus:ring-offset-2 sm:w-auto transition-all duration-200`}
+                            className={`w-full inline-flex justify-center rounded-2xl px-6 py-3 text-sm font-bold text-white shadow-lg ${styles.button} focus:outline-none focus:ring-2 focus:ring-offset-2 sm:w-auto transition-all duration-300 transform hover:scale-105`}
                         >
                             {confirmText || 'Xác nhận'}
                         </button>
                         <button
                             type="button"
                             onClick={onClose}
-                            className="mt-3 w-full inline-flex justify-center rounded-lg px-4 py-2.5 text-sm font-semibold text-gray-700 bg-white border border-gray-300 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:mt-0 sm:w-auto transition-all duration-200"
+                            className="mt-3 w-full inline-flex justify-center rounded-2xl px-6 py-3 text-sm font-bold text-purple-200 bg-white/10 backdrop-blur-xl border border-white/30 shadow-lg hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:mt-0 sm:w-auto transition-all duration-300 transform hover:scale-105"
                         >
                             {cancelText || 'Hủy'}
                         </button>
@@ -180,15 +180,15 @@ const BookingList = () => {
 
     const getStatusBadge = (status) => {
         const statusConfig = {
-            0: { color: 'bg-yellow-100 text-yellow-800', text: 'Chờ xử lý' },      // PENDING
-            1: { color: 'bg-blue-100 text-blue-800', text: 'Đã chấp nhận' },     // ACCEPTED
-            2: { color: 'bg-green-100 text-green-800', text: 'Hoàn thành' }      // COMPLETED
+            0: { color: 'bg-gradient-to-r from-yellow-500 to-orange-500 text-white', text: 'Chờ xử lý' },      // PENDING
+            1: { color: 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white', text: 'Đã chấp nhận' },     // ACCEPTED
+            2: { color: 'bg-gradient-to-r from-green-500 to-emerald-500 text-white', text: 'Hoàn thành' }      // COMPLETED
         };
 
         const config = statusConfig[status] || statusConfig[0];
 
         return (
-            <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${config.color}`}>
+            <span className={`inline-flex items-center px-4 py-2 rounded-2xl text-sm font-bold shadow-lg ${config.color}`}>
                 {config.text}
             </span>
         );
@@ -282,9 +282,9 @@ const BookingList = () => {
                     key="accept"
                     onClick={() => handleUpdateStatus(booking.id, 'accept')}
                     disabled={isUpdating === booking.id}
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-medium transition-colors disabled:opacity-50"
+                    className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white px-6 py-3 rounded-2xl text-sm font-bold transition-all duration-300 transform hover:scale-105 shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
-                    {isUpdating === booking.id ? <LoadingSpinner size="sm" /> : 'Chấp nhận'}
+                    {isUpdating === booking.id ? <LoadingSpinner size="sm" /> : '✅ Chấp nhận'}
                 </button>
             );
         }
@@ -296,9 +296,9 @@ const BookingList = () => {
                     key="finish"
                     onClick={() => handleUpdateStatus(booking.id, 'finish')}
                     disabled={isUpdating === booking.id}
-                    className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm font-medium transition-colors disabled:opacity-50"
+                    className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white px-6 py-3 rounded-2xl text-sm font-bold transition-all duration-300 transform hover:scale-105 shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
-                    {isUpdating === booking.id ? <LoadingSpinner size="sm" /> : 'Hoàn thành'}
+                    {isUpdating === booking.id ? <LoadingSpinner size="sm" /> : '🎉 Hoàn thành'}
                 </button>
             );
         }
@@ -320,162 +320,223 @@ const BookingList = () => {
 
     if (isLoading) {
         return (
-            <div className="min-h-screen flex items-center justify-center">
-                <LoadingSpinner size="lg" />
+            <div className="min-h-screen bg-gradient-to-br from-purple-900 via-purple-800 to-purple-900 flex items-center justify-center">
+                <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-12 shadow-2xl border border-white/20">
+                    <LoadingSpinner size="lg" />
+                    <p className="mt-6 text-purple-200 text-xl font-medium">Đang tải danh sách booking...</p>
+                </div>
             </div>
         );
     }
 
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div className="mb-8">
-                <h1 className="text-3xl font-bold text-gray-900 mb-2">Danh sách booking</h1>
-                <p className="text-gray-600">Quản lý và xử lý các đơn đặt dịch vụ</p>
-            </div>
-
-            {/* Error Message */}
-            {error && (
-                <div className="mb-6 rounded-md bg-red-50 p-4">
-                    <div className="text-sm text-red-700">{error}</div>
-                </div>
-            )}
-
-            {/* Filter */}
-            <div className="mb-6">
-                <div className="flex space-x-4">
-                    {[
-                        { key: 'all', label: 'Tất cả' },
-                        { key: 'pending', label: 'Chờ xử lý' },
-                        { key: 'accepted', label: 'Đã chấp nhận' },
-                        { key: 'completed', label: 'Hoàn thành' }
-                    ].map(({ key, label }) => (
-                        <button
-                            key={key}
-                            onClick={() => setFilter(key)}
-                            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${filter === key
-                                ? 'bg-primary-600 text-white'
-                                : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-300'
-                                }`}
-                        >
-                            {label}
-                        </button>
-                    ))}
-                </div>
-            </div>
-
-            {filteredBookings.length === 0 ? (
-                <div className="text-center py-12">
-                    <div className="text-gray-500 text-lg mb-4">
-                        {filter === 'all' ? 'Chưa có booking nào' : 'Không có booking nào với trạng thái này'}
+        <div className="min-h-screen bg-gradient-to-br from-purple-900 via-purple-800 to-purple-900 text-white">
+            {/* Hero Section */}
+            <div className="relative overflow-hidden">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(168,85,247,0.1),transparent_50%)]"></div>
+                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                    <div className="text-center mb-12">
+                        <div className="inline-flex items-center px-6 py-3 rounded-full bg-purple-500/20 border border-purple-400/30 backdrop-blur-sm mb-6">
+                            <span className="text-purple-200 text-sm font-medium">📋 Quản lý booking</span>
+                        </div>
+                        <h1 className="text-5xl md:text-6xl font-black mb-6">
+                            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Danh sách booking</span>
+                        </h1>
+                        <p className="text-xl text-purple-200 max-w-4xl mx-auto leading-relaxed">
+                            Quản lý và xử lý các đơn đặt dịch vụ
+                        </p>
                     </div>
                 </div>
-            ) : (
-                <div className="grid gap-6">
-                    {filteredBookings.map((booking) => (
-                        <div key={booking.id} className="bg-white rounded-lg shadow-md p-6">
-                            <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-4">
-                                <div className="flex-1">
-                                    <div className="flex items-center justify-between mb-2">
-                                        <h3 className="text-xl font-semibold text-gray-900">
-                                            {booking.serviceName}
-                                        </h3>
-                                        {getStatusBadge(booking.status)}
-                                    </div>
-                                    <div className="flex items-center space-x-4 text-sm text-gray-600 mb-3">
-                                        <span>ID: #{booking.id}</span>
-                                        <span>•</span>
-                                        <span>{new Date(booking.hireAt).toLocaleDateString('vi-VN')}</span>
-                                        <span>•</span>
-                                        <span>{new Date(booking.hireAt).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}</span>
-                                        {booking.employeeName && (
-                                            <>
-                                                <span>•</span>
-                                                <span>Nhân viên: {booking.employeeName}</span>
-                                            </>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
+            </div>
 
-                            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-                                <div>
-                                    <h4 className="font-medium text-gray-900 mb-2">Thông tin khách hàng</h4>
-                                    <div className="text-sm text-gray-600 space-y-1">
-                                        <div className="flex items-center">
-                                            <svg className="w-4 h-4 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                            </svg>
-                                            {booking.customerName}
-                                        </div>
-                                        <div className="flex items-center">
-                                            <svg className="w-4 h-4 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                            </svg>
-                                            {booking.address}
-                                        </div>
-                                    </div>
-                                </div>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
 
-                                <div>
-                                    <h4 className="font-medium text-gray-900 mb-2">Địa chỉ thực hiện</h4>
-                                    <div className="text-sm text-gray-600">
-                                        <div className="flex items-start">
-                                            <svg className="w-4 h-4 mr-2 mt-0.5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                            </svg>
-                                            <span>{booking.address}</span>
-                                        </div>
-                                    </div>
-                                </div>
+                {/* Error Message */}
+                {error && (
+                    <div className="mb-8 bg-red-500/20 backdrop-blur-xl rounded-2xl p-6 border border-red-400/30">
+                        <div className="text-sm text-red-200 font-medium">{error}</div>
+                    </div>
+                )}
 
-                                <div>
-                                    <h4 className="font-medium text-gray-900 mb-2">Thông tin dịch vụ</h4>
-                                    <div className="text-sm text-gray-600 space-y-1">
-                                        <div>Giá: <span className="font-medium text-primary-600">{booking.price.toLocaleString('vi-VN')}đ</span></div>
-                                        <div>Ngày thực hiện: {new Date(booking.hireAt).toLocaleDateString('vi-VN')}</div>
-                                        <div>Giờ thực hiện: {new Date(booking.hireAt).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}</div>
-                                        {booking.employeeName && (
-                                            <div>Nhân viên: <span className="font-medium text-blue-600">{booking.employeeName}</span></div>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-
-                            {booking.note && (
-                                <div className="mb-6">
-                                    <h4 className="font-medium text-gray-900 mb-2">Ghi chú từ khách hàng</h4>
-                                    <div className="text-sm text-gray-600 bg-gray-50 p-3 rounded-md">
-                                        {booking.note}
-                                    </div>
-                                </div>
-                            )}
-
-                            <div className="flex justify-between items-center pt-4 border-t border-gray-200">
-                                <div className="text-sm text-gray-500">
-                                    Cập nhật lần cuối: {new Date().toLocaleString('vi-VN')}
-                                </div>
-                                <div className="flex space-x-2">
-                                    {getStatusActions(booking)}
-                                </div>
-                            </div>
+                {/* Filter */}
+                <div className="mb-8">
+                    <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-6 border border-white/20 shadow-2xl">
+                        <h3 className="text-xl font-bold text-white mb-4">Bộ lọc trạng thái</h3>
+                        <div className="flex flex-wrap gap-3">
+                            {[
+                                { key: 'all', label: 'Tất cả' },
+                                { key: 'pending', label: 'Chờ xử lý' },
+                                { key: 'accepted', label: 'Đã chấp nhận' },
+                                { key: 'completed', label: 'Hoàn thành' }
+                            ].map(({ key, label }) => (
+                                <button
+                                    key={key}
+                                    onClick={() => setFilter(key)}
+                                    className={`px-6 py-3 rounded-2xl text-sm font-bold transition-all duration-300 transform hover:scale-105 ${filter === key
+                                        ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-2xl shadow-purple-500/25'
+                                        : 'bg-white/10 backdrop-blur-xl text-purple-200 hover:bg-white/20 border border-white/30'
+                                        }`}
+                                >
+                                    {label}
+                                </button>
+                            ))}
                         </div>
-                    ))}
+                    </div>
                 </div>
-            )}
 
-            {/* Confirm Modal */}
-            <ConfirmModal
-                isOpen={confirmModal.isOpen}
-                onClose={() => setConfirmModal({ ...confirmModal, isOpen: false })}
-                onConfirm={confirmModal.onConfirm}
-                title={confirmModal.title}
-                message={confirmModal.message}
-                type={confirmModal.type}
-                confirmText={confirmModal.confirmText}
-                cancelText={confirmModal.cancelText}
-            />
+                {filteredBookings.length === 0 ? (
+                    <div className="text-center py-16">
+                        <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-12 border border-white/20 shadow-2xl max-w-2xl mx-auto">
+                            <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                            </div>
+                            <h3 className="text-2xl font-bold text-white mb-4">
+                                {filter === 'all' ? 'Chưa có booking nào' : 'Không có booking nào với trạng thái này'}
+                            </h3>
+                            <p className="text-purple-200">
+                                {filter === 'all'
+                                    ? 'Chưa có đơn đặt dịch vụ nào được gửi đến'
+                                    : 'Thử chọn trạng thái khác để xem thêm booking'
+                                }
+                            </p>
+                        </div>
+                    </div>
+                ) : (
+                    <div className="grid gap-8">
+                        {filteredBookings.map((booking) => (
+                            <div key={booking.id} className="bg-white/10 backdrop-blur-xl rounded-3xl shadow-2xl p-8 border border-white/20 hover:bg-white/15 transition-all duration-500 transform hover:-translate-y-2">
+                                <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6">
+                                    <div className="flex-1">
+                                        <div className="flex items-center justify-between mb-3">
+                                            <h3 className="text-2xl font-black text-white">
+                                                {booking.serviceName}
+                                            </h3>
+                                            {getStatusBadge(booking.status)}
+                                        </div>
+                                        <div className="flex items-center space-x-4 text-sm text-purple-200 mb-4">
+                                            <span className="bg-white/10 backdrop-blur-xl rounded-full px-3 py-1">ID: #{booking.id}</span>
+                                            <span>•</span>
+                                            <span className="bg-purple-500/20 backdrop-blur-xl rounded-full px-3 py-1">
+                                                {new Date(booking.hireAt).toLocaleDateString('vi-VN')}
+                                            </span>
+                                            <span>•</span>
+                                            <span className="bg-blue-500/20 backdrop-blur-xl rounded-full px-3 py-1">
+                                                {new Date(booking.hireAt).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}
+                                            </span>
+                                            {booking.employeeName && (
+                                                <>
+                                                    <span>•</span>
+                                                    <span className="bg-green-500/20 backdrop-blur-xl rounded-full px-3 py-1">
+                                                        Nhân viên: {booking.employeeName}
+                                                    </span>
+                                                </>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                                    <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10">
+                                        <h4 className="font-bold text-white mb-4 text-lg">Thông tin khách hàng</h4>
+                                        <div className="text-sm text-purple-200 space-y-3">
+                                            <div className="flex items-center">
+                                                <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mr-3">
+                                                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                                    </svg>
+                                                </div>
+                                                <span className="font-bold text-white">{booking.customerName}</span>
+                                            </div>
+                                            <div className="flex items-start">
+                                                <div className="w-8 h-8 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                    </svg>
+                                                </div>
+                                                <span className="text-purple-200">{booking.address}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10">
+                                        <h4 className="font-bold text-white mb-4 text-lg">Địa chỉ thực hiện</h4>
+                                        <div className="text-sm text-purple-200">
+                                            <div className="flex items-start">
+                                                <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                    </svg>
+                                                </div>
+                                                <span>{booking.address}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10">
+                                        <h4 className="font-bold text-white mb-4 text-lg">Thông tin dịch vụ</h4>
+                                        <div className="text-sm text-purple-200 space-y-3">
+                                            <div className="flex justify-between items-center">
+                                                <span>Giá:</span>
+                                                <span className="text-2xl font-black text-transparent bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text">
+                                                    {booking.price.toLocaleString('vi-VN')}đ
+                                                </span>
+                                            </div>
+                                            <div className="flex justify-between items-center">
+                                                <span>Ngày:</span>
+                                                <span className="font-bold text-white">{new Date(booking.hireAt).toLocaleDateString('vi-VN')}</span>
+                                            </div>
+                                            <div className="flex justify-between items-center">
+                                                <span>Giờ:</span>
+                                                <span className="font-bold text-white">{new Date(booking.hireAt).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}</span>
+                                            </div>
+                                            {booking.employeeName && (
+                                                <div className="flex justify-between items-center">
+                                                    <span>Nhân viên:</span>
+                                                    <span className="font-bold text-white">{booking.employeeName}</span>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {booking.note && (
+                                    <div className="mb-6">
+                                        <h4 className="font-bold text-white mb-3 text-lg">Ghi chú từ khách hàng</h4>
+                                        <div className="text-sm text-purple-200 bg-white/5 backdrop-blur-xl p-4 rounded-2xl border border-white/10">
+                                            {booking.note}
+                                        </div>
+                                    </div>
+                                )}
+
+                                <div className="flex justify-between items-center pt-6 border-t border-white/20">
+                                    <div className="text-sm text-purple-200 font-medium">
+                                        Cập nhật lần cuối: {new Date().toLocaleString('vi-VN')}
+                                    </div>
+                                    <div className="flex space-x-3">
+                                        {getStatusActions(booking)}
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                )}
+
+                {/* Confirm Modal */}
+                <ConfirmModal
+                    isOpen={confirmModal.isOpen}
+                    onClose={() => setConfirmModal({ ...confirmModal, isOpen: false })}
+                    onConfirm={confirmModal.onConfirm}
+                    title={confirmModal.title}
+                    message={confirmModal.message}
+                    type={confirmModal.type}
+                    confirmText={confirmModal.confirmText}
+                    cancelText={confirmModal.cancelText}
+                />
+            </div>
         </div>
     );
 };
